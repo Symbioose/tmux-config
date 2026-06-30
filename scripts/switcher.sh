@@ -10,7 +10,7 @@ sel=$("$SCRIPTS/sessions.sh" pretty | fzf \
   --header='enter: switch    ^d: terminé    ^x: kill    ^n: nouvelle' \
   --bind "ctrl-d:execute-silent(tmux set-option -t {1} @status done)+reload($PRETTY)" \
   --bind "ctrl-x:execute-silent(tmux kill-session -t {1})+reload($PRETTY)" \
-  --bind "ctrl-n:execute(tmux display-popup -E -w 60% -h 55% '$SCRIPTS/new-ai-session.sh')+reload($PRETTY)" \
+  --bind "ctrl-n:execute($SCRIPTS/new-session.sh)+abort" \
 ) || exit 0
 
 name=$(printf '%s' "$sel" | cut -f1)

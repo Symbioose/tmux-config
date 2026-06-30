@@ -38,8 +38,8 @@ On appuie sur `Ctrl-a`, on relâche, puis la touche. La souris est active.
 ### Sessions
 | Touche | Action |
 |---|---|
-| `a` | **switcher fuzzy** (changer / `^x` kill / `^d` fini / `^n` nouvelle) |
-| `n` | **nouvelle session IA** (nom + dossier + agent) |
+| `a` | **switcher fuzzy** (changer / `^x` kill / `^d` fini / `^n` nouveau) |
+| `n` | **nouveau terminal** (session nommée d'après le dossier, sans question) |
 | `j` / `k` | session suivante / précédente |
 | `Tab` | dernière session |
 | `g` | aller à une session par son nom |
@@ -81,10 +81,9 @@ Repo, branche et agent sont **auto-dérivés** — rien à saisir.
 | `scripts/status-daemon.sh` | **démon** unique : calcule statut + agent + repo/branche, stocke en `@sb_*` |
 | `scripts/launch-daemon.sh` | lance le démon détaché (nohup, singleton) |
 | `scripts/sessions.sh` | lit les `@sb_*` → sortie `tsv` / `pretty` |
-| `scripts/sidebar.sh` | rend la colonne (repaint instantané sur `SIGUSR1`) |
-| `scripts/refresh-sidebars.sh` | signale les colonnes (par PID) à la création/fermeture de session |
+| `scripts/sidebar.sh` | rend la colonne (polling 1 s, robuste) |
 | `scripts/switcher.sh` | popup fzf |
-| `scripts/new-ai-session.sh` | crée une session IA (dossier en fzy + chemin libre) |
+| `scripts/new-session.sh` | ouvre un nouveau terminal (session nommée d'après le dossier) |
 | `scripts/ensure-sidebar.sh` | (ré)installe la colonne via hooks, largeur ~1/7 |
 | `scripts/toggle-sidebar.sh` | on/off de la colonne |
 | `shell/tmux-status.zsh` | hook zsh optionnel (statut exact) |

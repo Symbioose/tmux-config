@@ -4,7 +4,6 @@ SCRIPTS="$(cd "$(dirname "$0")" && pwd)"
 
 cleanup() { printf '\033[?25h'; }
 trap cleanup EXIT
-trap ':' USR1            # SIGUSR1 interrompt le sleep -> repaint immédiat
 printf '\033[?25l\033[2J'
 
 me=$(tmux display-message -p -t "$TMUX_PANE" '#{session_name}' 2>/dev/null)
@@ -35,7 +34,5 @@ while :; do
   done < <("$SCRIPTS/sessions.sh" tsv)
 
   printf '\033[H%s\033[J' "$out"
-  sleep 1.5 & swpid=$!      # sleep interruptible par SIGUSR1
-  wait "$swpid" 2>/dev/null
-  kill "$swpid" 2>/dev/null
+  sleep 1
 done
