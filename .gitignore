@@ -1,0 +1,5 @@
+# Plugins TPM (clonés par l'installeur, pas versionnés)
+plugins/
+
+# Sauvegardes éventuelles
+*.bak-*
