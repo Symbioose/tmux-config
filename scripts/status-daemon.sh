@@ -9,7 +9,8 @@
 #   idle     prompt shell, rien ne tourne                   -> ·
 # Singleton (pidfile) : un seul démon, relances ignorées.
 
-PIDF="/tmp/tmux-statusd-$(id -u).pid"
+srv=$(tmux display-message -p '#{pid}' 2>/dev/null)   # un démon par SERVEUR tmux
+PIDF="/tmp/tmux-statusd-$(id -u)-${srv:-x}.pid"
 if [ -f "$PIDF" ] && kill -0 "$(cat "$PIDF" 2>/dev/null)" 2>/dev/null; then exit 0; fi
 echo $$ >"$PIDF"
 trap 'rm -f "$PIDF"' EXIT INT TERM
